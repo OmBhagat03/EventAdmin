@@ -1,0 +1,63 @@
+.App {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.admin-login-container,
+.admin-panel-container {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.admin-login-form,
+.admin-panel-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-login-form input,
+.admin-panel-form input,
+.admin-panel-form textarea,
+.admin-panel-form select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.admin-login-form button,
+.admin-panel-form button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.events-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.event-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  width: 200px;
+  text-align: left;
+}
+
+.event-card h3 {
+  margin-top: 0;
+}
+
+.submit-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #218838;
+}
