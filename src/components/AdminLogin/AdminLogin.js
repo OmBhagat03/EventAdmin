@@ -13,7 +13,7 @@ const AdminLogin = () => {
     e.preventDefault();
     if (username === 'Admin' && password === 'admin123') {
       toast.success('Logged in as Admin');
-      navigate('/admin-panel'); // Redirect to admin panel
+      navigate('/events'); // Redirect to admin panel
     } else {
       toast.error('Invalid credentials');
     }
