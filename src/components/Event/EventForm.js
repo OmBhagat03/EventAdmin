@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast'; // Import react-hot-toast
 import './EventForm.css';
 
 const EventForm = () => {
@@ -31,15 +32,20 @@ const EventForm = () => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:5000/api/events', formData);
+      toast.success('Event added successfully!'); // Show success notification
       navigate('/events'); // Navigate back to the EventList page
     } catch (error) {
+      toast.error('Error adding event. Please try again.'); // Show error notification
       console.error('Error adding event:', error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="event-form">
+      <Toaster position="top-right" reverseOrder={false} /> {/* Toaster for showing notifications */}
       <h2>Add Event</h2>
+      
+      {/* Form fields */}
       <label htmlFor="name">Event Name</label>
       <input
         type="text"
