@@ -106,6 +106,71 @@ app.put('/api/events/:id', async (req, res) => {
   }
 });
 
+// Define Speaker schema
+const SpeakerSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  photo: { type: String, required: true },
+  role: { type: String, required: true },
+  description: { type: String, required: true },
+});
+
+const Speaker = mongoose.model('Speaker', SpeakerSchema);
+
+// Define Venue schema
+const VenueSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  image: { type: String, required: true },
+  country: { type: String, required: true },
+  category: { type: String, required: true },
+  description: { type: String, required: true },
+});
+
+const Venue = mongoose.model('Venue', VenueSchema);
+
+// Speaker Routes
+app.post('/api/speakers', async (req, res) => {
+  try {
+    const newSpeaker = new Speaker(req.body);
+    await newSpeaker.save();
+    res.status(201).json({ message: 'Speaker added successfully!' });
+  } catch (error) {
+    console.error('Error adding speaker:', error);
+    res.status(400).json({ error: 'Error adding speaker.' });
+  }
+});
+
+app.get('/api/speakers', async (req, res) => {
+  try {
+    const speakers = await Speaker.find();
+    res.status(200).json(speakers);
+  } catch (error) {
+    console.error('Error fetching speakers:', error);
+    res.status(500).json({ error: 'Error fetching speakers.' });
+  }
+});
+
+// Venue Routes
+app.post('/api/venues', async (req, res) => {
+  try {
+    const newVenue = new Venue(req.body);
+    await newVenue.save();
+    res.status(201).json({ message: 'Venue added successfully!' });
+  } catch (error) {
+    console.error('Error adding venue:', error);
+    res.status(400).json({ error: 'Error adding venue.' });
+  }
+});
+
+app.get('/api/venues', async (req, res) => {
+  try {
+    const venues = await Venue.find();
+    res.status(200).json(venues);
+  } catch (error) {
+    console.error('Error fetching venues:', error);
+    res.status(500).json({ error: 'Error fetching venues.' });
+  }
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

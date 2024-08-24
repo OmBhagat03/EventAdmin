@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.sign-in, .sign-up, .logout {
+  background-color: #ffca2c;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sign-in:hover, .sign-up:hover, .logout:hover {
+  background-color: #ffb700;
+}
+
+.navigation ul li a{
+  text-decoration: none;
+  color: aliceblue;
+}
+.auth-buttons a{
+  text-decoration: none;
+}

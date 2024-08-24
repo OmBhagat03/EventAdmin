@@ -1,0 +1,32 @@
+/* src/components/Venue/VenueForm.css */
+
+.venue-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .venue-form label {
+    margin-top: 10px;
+  }
+  
+  .venue-form input,
+  .venue-form textarea {
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .venue-form button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
