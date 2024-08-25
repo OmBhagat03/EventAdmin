@@ -127,18 +127,7 @@ const VenueSchema = new mongoose.Schema({
 
 const Venue = mongoose.model('Venue', VenueSchema);
 
-// Speaker Routes
-app.post('/api/speakers', async (req, res) => {
-  try {
-    const newSpeaker = new Speaker(req.body);
-    await newSpeaker.save();
-    res.status(201).json({ message: 'Speaker added successfully!' });
-  } catch (error) {
-    console.error('Error adding speaker:', error);
-    res.status(400).json({ error: 'Error adding speaker.' });
-  }
-});
-
+// Routes for Speakers
 app.get('/api/speakers', async (req, res) => {
   try {
     const speakers = await Speaker.find();
@@ -149,18 +138,46 @@ app.get('/api/speakers', async (req, res) => {
   }
 });
 
-// Venue Routes
-app.post('/api/venues', async (req, res) => {
+app.get('/api/speakers/:id', async (req, res) => {
   try {
-    const newVenue = new Venue(req.body);
-    await newVenue.save();
-    res.status(201).json({ message: 'Venue added successfully!' });
+    const speaker = await Speaker.findById(req.params.id);
+    if (!speaker) {
+      return res.status(404).json({ error: 'Speaker not found.' });
+    }
+    res.status(200).json(speaker);
   } catch (error) {
-    console.error('Error adding venue:', error);
-    res.status(400).json({ error: 'Error adding venue.' });
+    console.error('Error fetching speaker:', error);
+    res.status(500).json({ error: 'Error fetching speaker.' });
   }
 });
 
+app.put('/api/speakers/:id', async (req, res) => {
+  try {
+    const updatedSpeaker = await Speaker.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedSpeaker) {
+      return res.status(404).json({ error: 'Speaker not found.' });
+    }
+    res.status(200).json({ message: 'Speaker updated successfully!' });
+  } catch (error) {
+    console.error('Error updating speaker:', error);
+    res.status(400).json({ error: 'Error updating speaker.' });
+  }
+});
+
+app.delete('/api/speakers/:id', async (req, res) => {
+  try {
+    const speaker = await Speaker.findByIdAndDelete(req.params.id);
+    if (!speaker) {
+      return res.status(404).json({ error: 'Speaker not found.' });
+    }
+    res.status(200).json({ message: 'Speaker deleted successfully!' });
+  } catch (error) {
+    console.error('Error deleting speaker:', error);
+    res.status(400).json({ error: 'Error deleting speaker.' });
+  }
+});
+
+// Routes for Venues
 app.get('/api/venues', async (req, res) => {
   try {
     const venues = await Venue.find();
@@ -168,6 +185,45 @@ app.get('/api/venues', async (req, res) => {
   } catch (error) {
     console.error('Error fetching venues:', error);
     res.status(500).json({ error: 'Error fetching venues.' });
+  }
+});
+
+app.get('/api/venues/:id', async (req, res) => {
+  try {
+    const venue = await Venue.findById(req.params.id);
+    if (!venue) {
+      return res.status(404).json({ error: 'Venue not found.' });
+    }
+    res.status(200).json(venue);
+  } catch (error) {
+    console.error('Error fetching venue:', error);
+    res.status(500).json({ error: 'Error fetching venue.' });
+  }
+});
+
+app.put('/api/venues/:id', async (req, res) => {
+  try {
+    const updatedVenue = await Venue.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedVenue) {
+      return res.status(404).json({ error: 'Venue not found.' });
+    }
+    res.status(200).json({ message: 'Venue updated successfully!' });
+  } catch (error) {
+    console.error('Error updating venue:', error);
+    res.status(400).json({ error: 'Error updating venue.' });
+  }
+});
+
+app.delete('/api/venues/:id', async (req, res) => {
+  try {
+    const venue = await Venue.findByIdAndDelete(req.params.id);
+    if (!venue) {
+      return res.status(404).json({ error: 'Venue not found.' });
+    }
+    res.status(200).json({ message: 'Venue deleted successfully!' });
+  } catch (error) {
+    console.error('Error deleting venue:', error);
+    res.status(400).json({ error: 'Error deleting venue.' });
   }
 });
 
