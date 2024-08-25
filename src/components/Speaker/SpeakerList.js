@@ -1,10 +1,10 @@
-// SpeakerList.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './SpeakerList.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Toaster, toast } from 'react-hot-toast';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import './SpeakerList.css';
 
 const SpeakerList = () => {
   const [speakers, setSpeakers] = useState([]);
@@ -29,13 +29,13 @@ const SpeakerList = () => {
   };
 
   const handleEditClick = (id) => {
-    navigate(`/edit-speaker/${id}`); // Navigate to the EditSpeaker page with the speaker ID
+    navigate(`/edit-speaker/${id}`);
   };
 
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/speakers/${id}`);
-      setSpeakers(speakers.filter((speaker) => speaker._id !== id)); // Remove the deleted speaker from the state
+      setSpeakers(speakers.filter((speaker) => speaker._id !== id));
       toast.success('Speaker deleted successfully!');
     } catch (error) {
       console.error('Error deleting speaker:', error);
@@ -44,36 +44,52 @@ const SpeakerList = () => {
   };
 
   return (
-    <div className="speaker-list">
-      {/*<Toaster position="top-right" reverseOrder={false} />*/}
-      <h2>Speakers</h2>
-      <button onClick={handleAddSpeakerClick} className="add-speaker-btn">
+    <div className="container my-4">
+      
+      <h2 className="mb-4">Speakers</h2>
+      <button onClick={handleAddSpeakerClick} className="btn btn-primary mb-4">
         Add Speaker
       </button>
-      <div className="speaker-grid">
+      <div className="row">
         {speakers.map((speaker) => (
-          <div key={speaker._id} className="speaker-card">
-            <img src={speaker.photo} alt={speaker.name} className="speaker-photo" />
-            <h3>{speaker.name}</h3>
-            <p className="speaker-role">{speaker.role}</p>
-            <p className="speaker-description">{speaker.description}</p>
-            <div className="social-icons">
-              <a href={speaker.facebook} target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-facebook"></i>
-              </a>
-              <a href={speaker.twitter} target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a href={speaker.linkedin} target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-linkedin"></i>
-              </a>
-              <a href={speaker.instagram} target="_blank" rel="noopener noreferrer">
-                <i className="fab fa-instagram"></i>
-              </a>
-            </div>
-            <div className="speaker-card-footer">
-              <button onClick={() => handleEditClick(speaker._id)} className="edit-btn">Edit</button>
-              <button onClick={() => handleDeleteClick(speaker._id)} className="delete-btn">Delete</button>
+          <div key={speaker._id} className="col-md-4 mb-4">
+            <div className="card h-100">
+              <img src={speaker.photo} alt={speaker.name} className="card-img-top" />
+              <div className="card-body">
+                <h5 className="card-title">{speaker.name}</h5>
+                <p className="card-text text-muted">{speaker.role}</p>
+                <p className="card-text">{speaker.description}</p>
+                <div className="social-icons">
+                  {speaker.facebook && (
+                    <a href={speaker.facebook} target="_blank" rel="noopener noreferrer" className="me-2">
+                      <i className="fab fa-facebook"></i>
+                    </a>
+                  )}
+                  {speaker.twitter && (
+                    <a href={speaker.twitter} target="_blank" rel="noopener noreferrer" className="me-2">
+                      <i className="fab fa-twitter"></i>
+                    </a>
+                  )}
+                  {speaker.linkedin && (
+                    <a href={speaker.linkedin} target="_blank" rel="noopener noreferrer" className="me-2">
+                      <i className="fab fa-linkedin"></i>
+                    </a>
+                  )}
+                  {speaker.instagram && (
+                    <a href={speaker.instagram} target="_blank" rel="noopener noreferrer" className="me-2">
+                      <i className="fab fa-instagram"></i>
+                    </a>
+                  )}
+                </div>
+              </div>
+              <div className="card-footer d-flex justify-content-between">
+                <button onClick={() => handleEditClick(speaker._id)} className="btn btn-success btn-sm">
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteClick(speaker._id)} className="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}

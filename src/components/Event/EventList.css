@@ -1,132 +1,37 @@
-/* EventList.css */
-.event-list-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.event-list-title {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.add-event-btn {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #ff6600;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.event-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 20px;
-}
-
-.event-card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-}
-
-.event-card:hover {
-  transform: translateY(-10px);
-}
-
-.event-card-header {
-  position: relative;
-}
-
-.event-status {
+/* Style for the status badge to look like a button */
+.status-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: #ff6600;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.event-status.Upcoming {
-  background-color: #ffcc00;
-}
-
-.event-status.Showing {
-  background-color: #00cc99;
-}
-
-.event-status.Expired {
-  background-color: #cc0000;
-}
-
-.event-image {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.event-card-body {
-  padding: 15px;
-}
-
-.event-name {
-  margin: 10px 0;
-  font-size: 1.6rem;
-  color: #333;
-}
-
-.event-description {
-  margin: 10px 0;
-  color: #555;
-}
-
-.event-details {
-  margin: 5px 0;
-  font-size: 0.9rem;
-  color: #777;
-}
-
-/* New Styles for Edit and Delete Buttons */
-.event-card-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px;
-  background-color: #f8f8f8;
-  border-top: 1px solid #ddd;
-}
-
-.edit-btn, .delete-btn {
   padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9rem;
+  border-radius: 20px; /* Rounded corners for button-like appearance */
+  font-size: 14px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  border: none; /* Remove border if any */
+  z-index: 10;
 }
 
-.edit-btn {
-  background-color: #007bff;
-  color: white;
+/* Specific background colors for each status */
+.status-badge.upcoming {
+  background-color: #ff9800; /* Orange for upcoming */
 }
 
-.edit-btn:hover {
-  background-color: #0056b3;
+.status-badge.showing {
+  background-color: #28a745; /* Green for showing */
 }
 
-.delete-btn {
-  background-color: #dc3545;
-  color: white;
+.status-badge.expired {
+  background-color: #dc3545; /* Red for expired */
 }
 
-.delete-btn:hover {
-  background-color: #c82333;
+/* Card image styling to ensure the badge is visible */
+.card-img-top {
+  object-fit: cover;
+  height: 200px;
+  filter: brightness(0.9); /* Slightly darken the image to make the badge stand out more */
+  position: relative;
 }

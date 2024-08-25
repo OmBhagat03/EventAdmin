@@ -20,9 +20,19 @@ const VenueForm = ({ fetchVenues }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/venues', formData);
+      const response = await axios.post('http://localhost:5000/api/venues', formData);
       toast.success('Venue added successfully');
-      fetchVenues(); // Fetch the updated list of venues
+      
+      // Reset form fields after successful submission
+      setFormData({
+        name: '',
+        image: '',
+        country: '',
+        category: '',
+        description: '',
+      });
+      
+      if (fetchVenues) fetchVenues();  // Refresh the venues list if a function is provided
     } catch (error) {
       toast.error('Error adding venue');
       console.error('Error adding venue:', error);

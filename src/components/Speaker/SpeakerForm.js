@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Ensure this import is added for toast styles
-import './SpeakerForm.css'; // Create this file for styling if needed
+import 'react-toastify/dist/ReactToastify.css';
+import './SpeakerForm.css';
 
 const SpeakerForm = ({ fetchSpeakers }) => {
   const [formData, setFormData] = useState({
@@ -17,23 +17,27 @@ const SpeakerForm = ({ fetchSpeakers }) => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await axios.post('http://localhost:5000/api/speakers', formData);
-    
-    // Assuming a successful post returns a status code in the 2xx range
-    if (response.status >= 200 && response.status < 300) {
-      toast.success('Speaker added successfully');
-      fetchSpeakers(); // Fetch the updated list of speakers
-    } else {
-      toast.error('Failed to add speaker. Please try again.');
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/speakers', formData);
+      
+      if (response.status >= 200 && response.status < 300) {
+        toast.success('Speaker added successfully');
+        setFormData({  // Reset the form fields to empty values
+          name: '',
+          photo: '',
+          role: '',
+          description: '',
+        });
+        if (fetchSpeakers) fetchSpeakers();  // Refresh the speakers list if a function is provided
+      } else {
+        toast.error('Failed to add speaker. Please try again.');
+      }
+    } catch (error) {
+      toast.error('Error adding speaker');
+      console.error('Error adding speaker:', error);
     }
-  } catch (error) {
-    toast.error('Error adding speaker');
-    console.error('Error adding speaker:', error);
-  }
-};
-
+  };
 
   return (
     <>

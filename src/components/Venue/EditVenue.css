@@ -1,86 +1,101 @@
-/* Container for the entire edit venue page */
-.admin-panel-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-}
-
-/* Back button styling */
+/* Styles for the back button */
 .back-button {
-    display: block;
-    width: 100%;
-    margin-top: 15px; /* Space between Update and Back buttons */
-    padding: 10px 15px;
+    margin-top: 10px;
+    padding: 12px;
     background-color: #6c757d;
     color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border: none;
+    border-radius: 6px;
     font-size: 16px;
-    text-align: center;
-}
-
-.back-button:hover {
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .back-button:hover {
     background-color: #5a6268;
-}
-
-/* Form styling */
-.admin-panel-form {
+    box-shadow: 0 6px 12px rgba(90, 98, 104, 0.4);
+  }
+  
+  .back-button:active {
+    background-color: #4e555b;
+    box-shadow: 0 4px 8px rgba(78, 85, 91, 0.4);
+  }
+  
+  /* Additional styles for the form and container */
+  .admin-panel-container {
     display: flex;
     flex-direction: column;
-}
-
-.admin-panel-form label {
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-}
-
-.admin-panel-form input[type="text"],
-.admin-panel-form textarea {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    align-items: center;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+  }
+  
+  .admin-panel-form {
     width: 100%;
-    box-sizing: border-box;
-}
-
-.admin-panel-form textarea {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-panel-form label {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .admin-panel-form input,
+  .admin-panel-form textarea {
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    font-size: 16px;
+    background-color: #fff;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .admin-panel-form input:focus,
+  .admin-panel-form textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+  }
+  
+  .admin-panel-form textarea {
     resize: vertical;
-    height: 100px;
-}
-
-/* Submit button styling */
-.submit-btn {
-    padding: 10px 15px;
+    min-height: 100px;
+  }
+  
+  .submit-btn {
+    margin-top: 20px;
+    padding: 12px;
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-}
-
-.submit-btn:hover {
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .submit-btn:hover {
     background-color: #0056b3;
-}
-
-/* Loading text styling */
-.loading {
-    text-align: center;
-    font-size: 20px;
-    color: #333;
-}
+    box-shadow: 0 6px 12px rgba(0, 91, 187, 0.4);
+  }
+  
+  .submit-btn:active {
+    background-color: #004494;
+    box-shadow: 0 4px 8px rgba(0, 68, 148, 0.4);
+  }
+  
+  .submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

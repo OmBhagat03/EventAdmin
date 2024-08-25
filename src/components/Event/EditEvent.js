@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast'; // Import react-hot-toast
+import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
-import './EditEvent.css';
+import './EditEvent.css'; // Ensure you import the CSS file
 
 const EditEvent = () => {
-  const { id } = useParams();  // Get the event ID from the URL parameters
+  const { id } = useParams();
   const [formData, setFormData] = useState({
     name: '',
     image: '',
@@ -24,16 +24,14 @@ const EditEvent = () => {
   });
 
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true); // Add loading state
+  const [loading, setLoading] = useState(true);
 
-  // Fetch the event data when the component loads
   useEffect(() => {
     const fetchEventData = async () => {
       try {
         const response = await axios.get(`http://localhost:5000/api/events/${id}`);
         const eventData = response.data;
 
-        // Format the dates to YYYY-MM-DD to be compatible with the input[type="date"]
         setFormData({
           ...eventData,
           startDate: eventData.startDate ? eventData.startDate.split('T')[0] : '',
@@ -51,27 +49,24 @@ const EditEvent = () => {
     fetchEventData();
   }, [id]);
 
-  // Handle form field changes
   const handleFormChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:5000/api/events/${id}`, formData);
-      toast.success('Event Updated Successfully'); // Show success notification
-      navigate('/events'); // Redirect to the events page
+      toast.success('Event Updated Successfully');
+      navigate('/events');
     } catch (error) {
       toast.error('Error updating event');
       console.error('Error updating event:', error);
     }
   };
 
-  // Handle back button click
   const handleBackClick = () => {
-    navigate('/events'); // Navigate to EventList (events page)
+    navigate('/events');
   };
 
   if (loading) {
@@ -79,10 +74,10 @@ const EditEvent = () => {
   }
 
   return (
-    <div className="admin-panel-container">
-      <Toaster position="top-right" reverseOrder={false} /> {/* Make sure this is placed correctly */}
+    <div className="event-form-container">
+      
       <h2>Edit Event</h2>
-      <form onSubmit={handleSubmit} className="admin-panel-form">
+      <form onSubmit={handleSubmit} className="event-form">
         <label htmlFor="name">Event Name</label>
         <input
           type="text"

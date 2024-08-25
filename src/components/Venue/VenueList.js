@@ -1,4 +1,3 @@
-// VenueList.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -28,13 +27,13 @@ const VenueList = () => {
   };
 
   const handleEditClick = (id) => {
-    navigate(`/edit-venue/${id}`); // Navigate to the EditVenue page with the venue ID
+    navigate(`/edit-venue/${id}`);
   };
 
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/venues/${id}`);
-      setVenues(venues.filter((venue) => venue._id !== id)); // Remove the deleted venue from the state
+      setVenues(venues.filter((venue) => venue._id !== id));
       toast.success('Venue deleted successfully!');
     } catch (error) {
       console.error('Error deleting venue:', error);
@@ -43,27 +42,33 @@ const VenueList = () => {
   };
 
   return (
-    <div className="venue-list-container">
-      {/*<Toaster position="top-right" reverseOrder={false} />*/}
-      <h2 className="venue-list-title">Venues</h2>
-      <button onClick={handleAddVenueClick} className="add-venue-btn">
+    <div className="container my-4">
+      
+      <h2 className="mb-4">Venues</h2>
+      <button onClick={handleAddVenueClick} className="btn btn-primary mb-4">
         Add Venue
       </button>
-      <div className="venue-cards-grid">
+      <div className="row">
         {venues.map((venue) => (
-          <div key={venue._id} className="venue-card">
-            <img src={venue.image} alt={venue.name} className="venue-image" />
-            <div className="venue-details">
-              <div className="venue-tags">
-                <span className="venue-tag country-tag">{venue.country}</span>
-                <span className="venue-tag category-tag">{venue.category}</span>
+          <div key={venue._id} className="col-md-4 mb-4">
+            <div className="card h-100">
+              <img src={venue.image} alt={venue.name} className="card-img-top venue-image" />
+              <div className="card-body">
+                <div className="mb-2">
+                  <span className="badge bg-secondary me-2">{venue.country}</span>
+                  <span className="badge bg-info">{venue.category}</span>
+                </div>
+                <h5 className="card-title">{venue.name}</h5>
+                <p className="card-text">{venue.description}</p>
               </div>
-              <h3 className="venue-name">{venue.name}</h3>
-              <p className="venue-description">{venue.description}</p>
-            </div>
-            <div className="venue-card-footer">
-              <button onClick={() => handleEditClick(venue._id)} className="edit-btn">Edit</button>
-              <button onClick={() => handleDeleteClick(venue._id)} className="delete-btn">Delete</button>
+              <div className="card-footer d-flex justify-content-between">
+                <button onClick={() => handleEditClick(venue._id)} className="btn btn-success btn-sm">
+                  Edit
+                </button>
+                <button onClick={() => handleDeleteClick(venue._id)} className="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}
