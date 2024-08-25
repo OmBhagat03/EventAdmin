@@ -127,6 +127,18 @@ const VenueSchema = new mongoose.Schema({
 
 const Venue = mongoose.model('Venue', VenueSchema);
 
+// Speaker Routes
+app.post('/api/speakers', async (req, res) => {
+  try {
+    const newSpeaker = new Speaker(req.body);
+    await newSpeaker.save();
+    res.status(201).json({ message: 'Speaker added successfully!' });
+  } catch (error) {
+    console.error('Error adding speaker:', error);
+    res.status(400).json({ error: 'Error adding speaker.' });
+  }
+});
+
 // Routes for Speakers
 app.get('/api/speakers', async (req, res) => {
   try {
@@ -176,6 +188,18 @@ app.delete('/api/speakers/:id', async (req, res) => {
     res.status(400).json({ error: 'Error deleting speaker.' });
   }
 });
+
+app.post('/api/venues', async (req, res) => {
+  try {
+    const newVenue = new Venue(req.body);
+    await newVenue.save();
+    res.status(201).json({ message: 'Venue added successfully!' });
+  } catch (error) {
+    console.error('Error adding venue:', error);
+    res.status(400).json({ error: 'Error adding venue.' });
+  }
+});
+
 
 // Routes for Venues
 app.get('/api/venues', async (req, res) => {

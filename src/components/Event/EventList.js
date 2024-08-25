@@ -57,7 +57,7 @@ const EventList = () => {
 
   return (
     <div className="event-list-container">
-      <Toaster position="top-right" reverseOrder={false} />
+      {/*<Toaster position="top-right" reverseOrder={false} />*/}
       <h2 className="event-list-title">Events</h2>
       <button onClick={handleAddEventClick} className="add-event-btn">
         Add Event
