@@ -45,7 +45,7 @@ const SpeakerList = () => {
 
   return (
     <div className="speaker-list">
-      <Toaster position="top-right" reverseOrder={false} />
+      {/*<Toaster position="top-right" reverseOrder={false} />*/}
       <h2>Speakers</h2>
       <button onClick={handleAddSpeakerClick} className="add-speaker-btn">
         Add Speaker

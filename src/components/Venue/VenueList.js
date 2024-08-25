@@ -44,7 +44,7 @@ const VenueList = () => {
 
   return (
     <div className="venue-list-container">
-      <Toaster position="top-right" reverseOrder={false} />
+      {/*<Toaster position="top-right" reverseOrder={false} />*/}
       <h2 className="venue-list-title">Venues</h2>
       <button onClick={handleAddVenueClick} className="add-venue-btn">
         Add Venue
