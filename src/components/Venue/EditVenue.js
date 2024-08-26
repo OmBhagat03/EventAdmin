@@ -21,7 +21,7 @@ const EditVenue = () => {
   useEffect(() => {
     const fetchVenueData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/venues/${id}`);
+        const response = await axios.get(`http://localhost:5001/api/venues/${id}`);
         const venueData = response.data;
 
         setFormData(venueData);
@@ -45,7 +45,7 @@ const EditVenue = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/venues/${id}`, formData);
+      await axios.put(`http://localhost:5001/api/venues/${id}`, formData);
       toast.success('Venue Updated Successfully'); // Show success notification
       navigate('/venues'); // Redirect to the venues page
     } catch (error) {

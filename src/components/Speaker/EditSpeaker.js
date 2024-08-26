@@ -20,7 +20,7 @@ const EditSpeaker = () => {
   useEffect(() => {
     const fetchSpeakerData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/speakers/${id}`);
+        const response = await axios.get(`http://localhost:5001/api/speakers/${id}`);
         const speakerData = response.data;
 
         setFormData(speakerData);
@@ -44,7 +44,7 @@ const EditSpeaker = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/speakers/${id}`, formData);
+      await axios.put(`http://localhost:5001/api/speakers/${id}`, formData);
       toast.success('Speaker Updated Successfully'); // Show success notification
       navigate('/speakers'); // Redirect to the speakers page
     } catch (error) {

@@ -29,7 +29,7 @@ const EditEvent = () => {
   useEffect(() => {
     const fetchEventData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/events/${id}`);
+        const response = await axios.get(`http://localhost:5001/api/events/${id}`);
         const eventData = response.data;
 
         setFormData({
@@ -56,7 +56,7 @@ const EditEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/events/${id}`, formData);
+      await axios.put(`http://localhost:5001/api/events/${id}`, formData);
       toast.success('Event Updated Successfully');
       navigate('/events');
     } catch (error) {
