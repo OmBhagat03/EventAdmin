@@ -20,7 +20,7 @@ const VenueForm = ({ fetchVenues }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/venues', formData);
+      const response = await axios.post('http://localhost:5001/api/venues', formData);
       toast.success('Venue added successfully');
       
       // Reset form fields after successful submission

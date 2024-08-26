@@ -14,7 +14,7 @@ const VenueList = () => {
 
   const fetchVenues = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/venues');
+      const response = await axios.get('http://localhost:5001/api/venues');
       setVenues(response.data);
     } catch (error) {
       console.error('Error fetching venues:', error);
@@ -32,7 +32,7 @@ const VenueList = () => {
 
   const handleDeleteClick = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/venues/${id}`);
+      await axios.delete(`http://localhost:5001/api/venues/${id}`);
       setVenues(venues.filter((venue) => venue._id !== id));
       toast.success('Venue deleted successfully!');
     } catch (error) {

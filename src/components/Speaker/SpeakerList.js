@@ -16,7 +16,7 @@ const SpeakerList = () => {
 
   const fetchSpeakers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/speakers');
+      const response = await axios.get('http://localhost:5001/api/speakers');
       setSpeakers(response.data);
     } catch (error) {
       console.error('Error fetching speakers:', error);
@@ -34,7 +34,7 @@ const SpeakerList = () => {
 
   const handleDeleteClick = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/speakers/${id}`);
+      await axios.delete(`http://localhost:5001/api/speakers/${id}`);
       setSpeakers(speakers.filter((speaker) => speaker._id !== id));
       toast.success('Speaker deleted successfully!');
     } catch (error) {

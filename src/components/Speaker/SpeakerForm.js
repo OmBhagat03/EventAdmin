@@ -19,7 +19,7 @@ const SpeakerForm = ({ fetchSpeakers }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/speakers', formData);
+      const response = await axios.post('http://localhost:5001/api/speakers', formData);
       
       if (response.status >= 200 && response.status < 300) {
         toast.success('Speaker added successfully');

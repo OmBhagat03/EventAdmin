@@ -15,7 +15,7 @@ const EventList = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/events');
+      const response = await axios.get('http://localhost:5001/api/events');
       const updatedEvents = response.data.map(event => {
         const currentDate = new Date();
         const startDate = new Date(event.startDate);
@@ -47,7 +47,7 @@ const EventList = () => {
 
   const handleDeleteClick = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/events/${id}`);
+      await axios.delete(`http://localhost:5001/api/events/${id}`);
       setEvents(events.filter((event) => event._id !== id));
       toast.success('Event deleted successfully!');
     } catch (error) {

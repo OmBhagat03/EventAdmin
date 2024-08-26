@@ -31,7 +31,7 @@ const EventForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/events', formData);
+      await axios.post('http://localhost:5001/api/events', formData);
       toast.success('Event added successfully!'); // Show success notification
       navigate('/events'); // Navigate back to the EventList page
     } catch (error) {
